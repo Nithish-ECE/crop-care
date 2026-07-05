@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Care - Smart Farming Assistant</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow" data-i18n="eyebrow">AI Powered Smart Farming Assistant</p>
+        <h1 data-i18n="title">Crop Care</h1>
+        <p class="subtitle" data-i18n="subtitle">Multilingual, state-aware support for Indian farmers.</p>
+      </div>
+      <div class="topbar-actions">
+        <label class="select-wrap">
+          <span data-i18n="language">Language</span>
+          <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="ta">தமிழ்</option>
+            <option value="bn">বাংলা</option>
+            <option value="te">తెలుగు</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="mr">मराठी</option>
+            <option value="gu">ગુજરાતી</option>
+            <option value="ml">മലയാളം</option>
+          </select>
+        </label>
+        <a href="#profile" class="pill-btn" data-i18n="profileBtn">Farmer Profile</a>
+      </div>
+    </header>
+
+    <nav class="nav">
+      <button class="nav-btn" data-target="dashboard" data-i18n="navDashboard">Dashboard</button>
+      <button class="nav-btn" data-target="recommendation" data-i18n="navRecommendation">Crop Recommendation</button>
+      <button class="nav-btn" data-target="fertilizer" data-i18n="navFertilizer">Fertilizer</button>
+      <button class="nav-btn" data-target="disease" data-i18n="navDisease">Disease Detection</button>
+      <button class="nav-btn" data-target="schemes" data-i18n="navSchemes">Schemes</button>
+      <button class="nav-btn" data-target="market" data-i18n="navMarket">Market</button>
+      <button class="nav-btn" data-target="calendar" data-i18n="navCalendar">Calendar</button>
+      <button class="nav-btn" data-target="experts" data-i18n="navExperts">Experts</button>
+      <button class="nav-btn" data-target="weather" data-i18n="navWeather">Weather</button>
+      <button class="nav-btn" data-target="soil" data-i18n="navSoil">Soil Health</button>
+      <button class="nav-btn" data-target="irrigation" data-i18n="navIrrigation">Irrigation</button>
+      <button class="nav-btn" data-target="profile" data-i18n="navProfile">Profile</button>
+      <button class="nav-btn" data-target="notifications" data-i18n="navAlerts">Alerts</button>
+      <button class="nav-btn" data-target="chat" data-i18n="navChat">AI Chat</button>
+      <button class="nav-btn" data-target="analytics" data-i18n="navAnalytics">Analytics</button>
+    </nav>
+
+    <main class="container">
+      <section id="dashboard" class="card hero-card">
+        <div class="section-heading">
+          <h2 data-i18n="dashboardTitle">Smart Dashboard</h2>
+          <p data-i18n="dashboardDesc">Personalized farming information tailored for your region.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="stateSelect" data-i18n="state">State</label>
+            <select id="stateSelect"></select>
+          </div>
+          <div class="field-group">
+            <label for="districtSelect" data-i18n="district">District</label>
+            <select id="districtSelect"></select>
+          </div>
+        </div>
+        <div class="stats-grid" id="dashboardSummary"></div>
+      </section>
+
+      <section id="recommendation" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="cropRecommendationTitle">Crop Recommendation</h2>
+          <p data-i18n="cropRecommendationDesc">Use farm conditions to find the best crops.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="recommendState" data-i18n="state">State</label>
+            <select id="recommendState"></select>
+          </div>
+          <div class="field-group">
+            <label for="recommendSoil" data-i18n="soilType">Soil Type</label>
+            <select id="recommendSoil">
+              <option value="Clay">Clay</option>
+              <option value="Loamy">Loamy</option>
+              <option value="Sandy">Sandy</option>
+              <option value="Black">Black</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="recommendSeason" data-i18n="season">Season</label>
+            <select id="recommendSeason">
+              <option value="Kharif">Kharif</option>
+              <option value="Rabi">Rabi</option>
+              <option value="Summer">Summer</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="recommendWater" data-i18n="waterAvailability">Water Availability</label>
+            <select id="recommendWater">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+        </div>
+        <button class="primary-btn" id="recommendBtn" data-i18n="recommendBtn">Get Recommendations</button>
+        <div id="recommendationOutput" class="output-box"></div>
+      </section>
+
+      <section id="fertilizer" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="fertilizerTitle">Fertilizer Recommendation</h2>
+          <p data-i18n="fertilizerDesc">Balanced nutrient guidance for healthier crops.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="fertCrop" data-i18n="crop">Crop</label>
+            <select id="fertCrop">
+              <option value="Rice">Rice</option>
+              <option value="Tomato">Tomato</option>
+              <option value="Banana">Banana</option>
+              <option value="Wheat">Wheat</option>
+              <option value="Cotton">Cotton</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="fertSoil" data-i18n="soilType">Soil Type</label>
+            <select id="fertSoil">
+              <option value="Loamy">Loamy</option>
+              <option value="Clay">Clay</option>
+              <option value="Sandy">Sandy</option>
+              <option value="Black">Black</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="fertStage" data-i18n="growthStage">Growth Stage</label>
+            <select id="fertStage">
+              <option value="Sowing">Sowing</option>
+              <option value="Vegetative">Vegetative</option>
+              <option value="Flowering">Flowering</option>
+              <option value="Maturity">Maturity</option>
+            </select>
+          </div>
+        </div>
+        <button class="primary-btn" id="fertilizerBtn" data-i18n="fertilizerBtn">Show Fertilizer Plan</button>
+        <div id="fertilizerOutput" class="output-box"></div>
+      </section>
+
+      <section id="disease" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="diseaseTitle">AI Crop Disease Detection</h2>
+          <p data-i18n="diseaseDesc">Upload a crop image to get disease insights.</p>
+        </div>
+        <input type="file" id="imageUpload" accept="image/*" />
+        <div class="upload-box" id="uploadBox">📷 <span data-i18n="uploadHint">Drop or select an image of your crop leaf</span></div>
+        <img id="previewImage" alt="Crop preview" />
+        <button class="primary-btn" id="detectBtn" data-i18n="detectBtn">Detect Disease</button>
+        <div id="diseaseOutput" class="output-box"></div>
+      </section>
+
+      <section id="schemes" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="schemesTitle">Government Schemes</h2>
+          <p data-i18n="schemesDesc">Check what support is available for your farm.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="schemeState" data-i18n="state">State</label>
+            <select id="schemeState"></select>
+          </div>
+          <div class="field-group">
+            <label for="schemeCategory" data-i18n="farmerCategory">Farmer Category</label>
+            <select id="schemeCategory">
+              <option value="Small">Small</option>
+              <option value="Marginal">Marginal</option>
+              <option value="Tenant">Tenant</option>
+              <option value="Women">Women</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="schemeLand" data-i18n="landSize">Land Size (ha)</label>
+            <input id="schemeLand" type="number" min="0.1" step="0.1" value="2" />
+          </div>
+          <div class="field-group">
+            <label for="schemeCrop" data-i18n="crop">Crop</label>
+            <input id="schemeCrop" type="text" value="Rice" />
+          </div>
+        </div>
+        <button class="primary-btn" id="schemeBtn" data-i18n="schemeBtn">Check Eligibility</button>
+        <div id="schemeOutput" class="output-box"></div>
+      </section>
+
+      <section id="market" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="marketTitle">Market Prices</h2>
+          <p data-i18n="marketDesc">Track local market trends before selling produce.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="marketState" data-i18n="state">State</label>
+            <select id="marketState"></select>
+          </div>
+          <div class="field-group">
+            <label for="marketDistrict" data-i18n="district">District</label>
+            <select id="marketDistrict"></select>
+          </div>
+          <div class="field-group">
+            <label for="marketCrop" data-i18n="crop">Crop</label>
+            <select id="marketCrop">
+              <option value="Rice">Rice</option>
+              <option value="Tomato">Tomato</option>
+              <option value="Banana">Banana</option>
+              <option value="Cotton">Cotton</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="marketPlace" data-i18n="market">Market</label>
+            <select id="marketPlace">
+              <option value="Mandya">Mandya</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Ludhiana">Ludhiana</option>
+              <option value="Guntur">Guntur</option>
+            </select>
+          </div>
+        </div>
+        <button class="primary-btn" id="marketBtn" data-i18n="marketBtn">View Prices</button>
+        <div id="marketOutput" class="output-box"></div>
+      </section>
+
+      <section id="calendar" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="calendarTitle">Farming Calendar</h2>
+          <p data-i18n="calendarDesc">Localized reminders for important farm tasks.</p>
+        </div>
+        <div id="calendarOutput" class="output-box"></div>
+      </section>
+
+      <section id="experts" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="expertsTitle">Nearby Agriculture Experts</h2>
+          <p data-i18n="expertsDesc">Connect with officers, labs, and dealers near you.</p>
+        </div>
+        <div id="expertsOutput" class="output-box"></div>
+      </section>
+
+      <section id="weather" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="weatherTitle">Weather & Climate</h2>
+          <p data-i18n="weatherDesc">Daily weather and field advice.</p>
+        </div>
+        <div id="weatherOutput" class="output-box"></div>
+      </section>
+
+      <section id="soil" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="soilTitle">Soil Health</h2>
+          <p data-i18n="soilDesc">Quick insights on soil condition and improvement.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="soilTypeSelect" data-i18n="soilType">Soil Type</label>
+            <select id="soilTypeSelect">
+              <option value="Black">Black</option>
+              <option value="Red">Red</option>
+              <option value="Sandy">Sandy</option>
+              <option value="Loamy">Loamy</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="soilPhInput" data-i18n="soilPh">Soil pH</label>
+            <input id="soilPhInput" type="number" min="4" max="10" step="0.1" value="6.5" />
+          </div>
+        </div>
+        <button class="primary-btn" id="soilBtn" data-i18n="soilBtn">Check Soil Health</button>
+        <div id="soilOutput" class="output-box"></div>
+      </section>
+
+      <section id="irrigation" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="irrigationTitle">Irrigation Management</h2>
+          <p data-i18n="irrigationDesc">Optimize water use with simple guidance.</p>
+        </div>
+        <div id="irrigationOutput" class="output-box"></div>
+      </section>
+
+      <section id="profile" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="profileTitle">Farmer Profile</h2>
+          <p data-i18n="profileDesc">Store your region and crop preferences.</p>
+        </div>
+        <div class="grid two-col">
+          <div class="field-group">
+            <label for="farmerName" data-i18n="farmerName">Farmer Name</label>
+            <input id="farmerName" type="text" value="Ravi Kumar" />
+          </div>
+          <div class="field-group">
+            <label for="farmSize" data-i18n="farmSize">Farm Size (ha)</label>
+            <input id="farmSize" type="number" value="3" />
+          </div>
+          <div class="field-group">
+            <label for="cropsGrown" data-i18n="cropsGrown">Crops Grown</label>
+            <input id="cropsGrown" type="text" value="Rice, Tomato" />
+          </div>
+          <div class="field-group">
+            <label for="preferredLanguage" data-i18n="preferredLanguage">Preferred Language</label>
+            <select id="preferredLanguage">
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+              <option value="Tamil">Tamil</option>
+            </select>
+          </div>
+        </div>
+        <button class="primary-btn" id="profileBtn" data-i18n="profileBtnSave">Save Profile</button>
+        <div id="profileOutput" class="output-box"></div>
+      </section>
+
+      <section id="notifications" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="notificationsTitle">Notifications & Alerts</h2>
+          <p data-i18n="notificationsDesc">Timely reminders for important farm actions.</p>
+        </div>
+        <div id="notificationsOutput" class="output-box"></div>
+      </section>
+
+      <section id="chat" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="chatTitle">AI Chat Assistant</h2>
+          <p data-i18n="chatDesc">Ask farming questions in your own language.</p>
+        </div>
+        <div id="chatMessages" class="chat-box"></div>
+        <div class="chat-controls">
+          <input id="chatInput" type="text" data-i18n-placeholder="chatPlaceholder" placeholder="Ask about fertilizer, disease, market price or schemes" />
+          <button class="primary-btn" id="chatBtn" data-i18n="chatBtn">Send</button>
+        </div>
+      </section>
+
+      <section id="analytics" class="card">
+        <div class="section-heading">
+          <h2 data-i18n="analyticsTitle">Admin Analytics</h2>
+          <p data-i18n="analyticsDesc">Monitor user activity and farm intelligence.</p>
+        </div>
+        <div id="analyticsOutput" class="output-box"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
